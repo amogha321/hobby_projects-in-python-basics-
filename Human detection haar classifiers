@@ -3,8 +3,8 @@ import cv2
 # capture frames from a video
 cap = cv2.VideoCapture('E:/Database/p1.mp4')
 
-# Trained XML classifiers describes some features of some object we want to detect
-human_cascade = cv2.CascadeClassifier(r'C:\Users\vchan\OneDrive\Desktop\Untitled Folder\haarcascade_fullbody.xml')
+# link in your PC of where XML is stored
+human_cascade = cv2.CascadeClassifier('E:/Database/haar/haarcascade_fullbody.xml')
 
 # loop runs if capturing has been initialized.
 while True:
