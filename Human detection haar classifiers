@@ -1,0 +1,29 @@
+import cv2
+
+# capture frames from a video
+cap = cv2.VideoCapture('E:/Database/p1.mp4')
+
+# Trained XML classifiers describes some features of some object we want to detect
+human_cascade = cv2.CascadeClassifier(r'C:\Users\vchan\OneDrive\Desktop\Untitled Folder\haarcascade_fullbody.xml')
+
+# loop runs if capturing has been initialized.
+while True:
+    # reads frames from a video
+    ret, frames = cap.read()
+    # convert to gray scale of each frames
+    #gray = cv2.cvtColor(frames, cv2.COLOR_BGR2GRAY)
+    # Detects human of different sizes in the input image
+    humans = human_cascade.detectMultiScale( frames, 1.1, 1)
+    # To draw a rectangle in each pedestrians
+    for (x,y,w,h) in humans:
+        cv2.rectangle(frames,(x,y),(x+w,y+h),(0,255,0),2)
+        font = cv2.FONT_HERSHEY_DUPLEX
+        cv2.putText(frames, 'Person', (x + 6, y - 6), font, 0.5, (0, 255, 0), 1)
+        # Display frames in a window
+        cv2.imshow('Human Detection', frames)
+    # Wait for Enter key to stop
+    if cv2.waitKey(33) == 13:
+        break
+
+cap.release()
+cv2.destroyAllWindows()
