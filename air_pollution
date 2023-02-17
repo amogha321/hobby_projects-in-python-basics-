@@ -3,7 +3,7 @@ import requests
 import matplotlib.pyplot as plt
 city = input("Enter you city :  ")
 url = 'http://api.waqi.info/feed/' + city + '/?token='
-api_key = ''
+api_key = input("Enter your API key: ")
 
 main_url = url + api_key
 r = requests.get(main_url)
